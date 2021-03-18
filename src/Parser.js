@@ -93,7 +93,7 @@ module.exports = class Parser {
           for (j = 0; j < l2; j++) {
             cell += this.renderer.tablecell(
               this.parseInline(token.tokens.header[j]),
-              { header: true, align: token.align[j] }
+              { header: true, align: token.align[j], space: token.space[j] }
             );
           }
           header += this.renderer.tablerow(cell);
@@ -108,7 +108,7 @@ module.exports = class Parser {
             for (k = 0; k < l3; k++) {
               cell += this.renderer.tablecell(
                 this.parseInline(row[k]),
-                { header: false, align: token.align[k] }
+                { header: false, align: token.align[k], space: token.space[k] }
               );
             }
 

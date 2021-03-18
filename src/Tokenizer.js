@@ -142,7 +142,8 @@ module.exports = class Tokenizer {
         header: splitCells(cap[1].replace(/^ *| *\| *$/g, '')),
         align: cap[2].replace(/^ *|\| *$/g, '').split(/ *\| */),
         cells: cap[3] ? cap[3].replace(/\n$/, '').split('\n') : [],
-        raw: cap[0]
+        raw: cap[0],
+        space: []
       };
 
       if (item.header.length === item.align.length) {
@@ -158,6 +159,9 @@ module.exports = class Tokenizer {
           } else {
             item.align[i] = null;
           }
+
+          // count of `-`
+          item.space[i] = (item.align[i].match(/-/g) || [] ).length;
         }
 
         l = item.cells.length;
@@ -362,7 +366,8 @@ module.exports = class Tokenizer {
         type: 'table',
         header: splitCells(cap[1].replace(/^ *| *\| *$/g, '')),
         align: cap[2].replace(/^ *|\| *$/g, '').split(/ *\| */),
-        cells: cap[3] ? cap[3].replace(/\n$/, '').split('\n') : []
+        cells: cap[3] ? cap[3].replace(/\n$/, '').split('\n') : [],
+        space: []
       };
 
       if (item.header.length === item.align.length) {
@@ -380,6 +385,9 @@ module.exports = class Tokenizer {
           } else {
             item.align[i] = null;
           }
+
+          // count of `-`
+          item.space[i] = (item.align[i].match(/-/g) || [] ).length;
         }
 
         l = item.cells.length;

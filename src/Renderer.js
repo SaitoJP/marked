@@ -106,9 +106,12 @@ module.exports = class Renderer {
 
   tablecell(content, flags) {
     const type = flags.header ? 'th' : 'td';
+    const width = parseInt(flags.space, 10) * 30;
+    const typeWithWidth = type + ' width="' + width + 'px"';
     const tag = flags.align
-      ? '<' + type + ' align="' + flags.align + '">'
-      : '<' + type + '>';
+      ? '<' + typeWithWidth + ' align="' + flags.align + '">'
+      : '<' + typeWithWidth + '>';
+
     return tag + content + '</' + type + '>\n';
   }
 
